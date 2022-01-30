@@ -1,0 +1,310 @@
+{
+  "project" : {
+    "id" : "final-257719167-AAS",
+    "name" : "final-257719167-AAS",
+    "folder" : "/jaicp"
+  },
+  "settings" : {
+    "language" : "ru",
+    "spellingCorrection" : false,
+    "classificationAlgorithm" : "sts",
+    "timezone" : "UTC",
+    "extendedSettings" : {
+      "tokenizerEngine" : "mystem",
+      "allowedPatterns" : [ ],
+      "useShared" : false
+    },
+    "shared" : false
+  },
+  "intents" : [ {
+    "id" : 3851923,
+    "path" : "/search_q",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "@metro @room @price1 @price2"
+    }, {
+      "text" : "@metro"
+    }, {
+      "text" : "@metro @price1"
+    }, {
+      "text" : "@room квартира у метро @metro по цене от @price1 до @price2"
+    }, {
+      "text" : "@metro до @price2"
+    }, {
+      "text" : "квартира с ценой до @price2"
+    }, {
+      "text" : "квартира у метро @metro"
+    }, {
+      "text" : "квартира @room у метро @metro до @price2"
+    }, {
+      "text" : "квартира с комнатами @rooms у метро @metro"
+    }, {
+      "text" : "@metro @room квартира с ценой до @price2"
+    }, {
+      "text" : "ищу @room квартиру стоимостью до @price2"
+    }, {
+      "text" : "цена начиная с @price1 до @price2 находится у метро @metro"
+    }, {
+      "text" : "@room квартира у @metro"
+    }, {
+      "text" : "@room у @metro"
+    } ],
+    "patterns" : [ "@metro от @price1 до @price2", "@metro от @price1 до @price2 и @room", "* @metro *" ],
+    "slots" : [ {
+      "name" : "metro",
+      "entity" : "metro",
+      "required" : true,
+      "prompts" : [ "Укажите станцию метро кольцевой ветки Москвы" ]
+    }, {
+      "name" : "room",
+      "entity" : "room",
+      "required" : true,
+      "prompts" : [ "Однокомнатная или двухкомнатная квартира?" ]
+    }, {
+      "name" : "price1",
+      "entity" : "duckling.number",
+      "required" : true,
+      "prompts" : [ "Укажите первую границу ценового диапазона" ],
+      "array" : false
+    }, {
+      "name" : "price2",
+      "entity" : "duckling.number",
+      "required" : true,
+      "prompts" : [ "Укажите вторую границу ценового диапазона" ],
+      "array" : false
+    } ],
+    "priority" : 0
+  } ],
+  "entities" : [ {
+    "entity" : {
+      "id" : 97844,
+      "name" : "metro",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : true,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : true,
+      "client" : false
+    },
+    "records" : [ {
+      "id" : 10005172,
+      "type" : "synonyms",
+      "rule" : [ "Баррикадная" ],
+      "value" : ""
+    }, {
+      "id" : 10005173,
+      "type" : "synonyms",
+      "rule" : [ "Белорусская" ],
+      "value" : ""
+    }, {
+      "id" : 10005174,
+      "type" : "synonyms",
+      "rule" : [ "Добрынинская" ],
+      "value" : ""
+    }, {
+      "id" : 10005175,
+      "type" : "synonyms",
+      "rule" : [ "Киевская" ],
+      "value" : ""
+    }, {
+      "id" : 10005176,
+      "type" : "synonyms",
+      "rule" : [ "Комсомольская" ],
+      "value" : ""
+    }, {
+      "id" : 10005177,
+      "type" : "synonyms",
+      "rule" : [ "Краснопресненская" ],
+      "value" : ""
+    }, {
+      "id" : 10005178,
+      "type" : "synonyms",
+      "rule" : [ "Курская" ],
+      "value" : ""
+    }, {
+      "id" : 10005179,
+      "type" : "synonyms",
+      "rule" : [ "Марксистская" ],
+      "value" : ""
+    }, {
+      "id" : 10005180,
+      "type" : "synonyms",
+      "rule" : [ "Менделеевская" ],
+      "value" : ""
+    }, {
+      "id" : 10005181,
+      "type" : "synonyms",
+      "rule" : [ "Новослободская" ],
+      "value" : ""
+    }, {
+      "id" : 10005182,
+      "type" : "synonyms",
+      "rule" : [ "Октябрьская" ],
+      "value" : ""
+    }, {
+      "id" : 10005183,
+      "type" : "synonyms",
+      "rule" : [ "Павелецкая" ],
+      "value" : ""
+    }, {
+      "id" : 10005184,
+      "type" : "synonyms",
+      "rule" : [ "Парк Культуры" ],
+      "value" : ""
+    }, {
+      "id" : 10005185,
+      "type" : "synonyms",
+      "rule" : [ "Проспект Мира" ],
+      "value" : ""
+    }, {
+      "id" : 10005186,
+      "type" : "synonyms",
+      "rule" : [ "Серпуховская" ],
+      "value" : ""
+    }, {
+      "id" : 10005187,
+      "type" : "synonyms",
+      "rule" : [ "Таганская" ],
+      "value" : ""
+    }, {
+      "id" : 10005188,
+      "type" : "synonyms",
+      "rule" : [ "Чкаловская" ],
+      "value" : ""
+    } ]
+  }, {
+    "entity" : {
+      "id" : 97918,
+      "name" : "room",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : true,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : true,
+      "client" : false
+    },
+    "records" : [ {
+      "id" : 10007987,
+      "type" : "synonyms",
+      "rule" : [ "двухкомнатная" ],
+      "value" : ""
+    }, {
+      "id" : 10007988,
+      "type" : "synonyms",
+      "rule" : [ "однокомнатная" ],
+      "value" : ""
+    } ]
+  } ],
+  "enabledSystemEntities" : [ "mystem.geo", "duckling.number", "duckling.time", "duckling.duration", "duckling.phone-number", "duckling.email", "duckling.url" ],
+  "spellerDictionary" : [ ],
+  "systemEntities" : [ {
+    "name" : "mystem.geo",
+    "enabled" : true
+  }, {
+    "name" : "mystem.persn",
+    "enabled" : false
+  }, {
+    "name" : "mystem.obsc",
+    "enabled" : false
+  }, {
+    "name" : "mystem.patrn",
+    "enabled" : false
+  }, {
+    "name" : "mystem.famn",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.romn",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.latn",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.numb",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.intg",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.abbr",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.name",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.surn",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.patr",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.geox",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.orgn",
+    "enabled" : false
+  }, {
+    "name" : "duckling.number",
+    "version" : "v2",
+    "enabled" : true
+  }, {
+    "name" : "duckling.ordinal",
+    "version" : "v2",
+    "enabled" : false
+  }, {
+    "name" : "duckling.amount-of-money",
+    "version" : "v2",
+    "enabled" : false
+  }, {
+    "name" : "duckling.distance",
+    "version" : "v2",
+    "enabled" : false
+  }, {
+    "name" : "duckling.time",
+    "version" : "v2",
+    "enabled" : true
+  }, {
+    "name" : "duckling.date",
+    "version" : "v2",
+    "enabled" : false
+  }, {
+    "name" : "duckling.time-of-day",
+    "version" : "v2",
+    "enabled" : false
+  }, {
+    "name" : "duckling.duration",
+    "version" : "v2",
+    "enabled" : true
+  }, {
+    "name" : "duckling.phone-number",
+    "version" : "v2",
+    "enabled" : true
+  }, {
+    "name" : "duckling.email",
+    "version" : "v2",
+    "enabled" : true
+  }, {
+    "name" : "duckling.url",
+    "version" : "v2",
+    "enabled" : true
+  }, {
+    "name" : "duckling.interval",
+    "version" : "v2",
+    "enabled" : false
+  }, {
+    "name" : "mlps-obscene.obscene",
+    "enabled" : false
+  }, {
+    "name" : "zb.datetime",
+    "enabled" : false
+  }, {
+    "name" : "zb.number",
+    "enabled" : false
+  } ]
+}

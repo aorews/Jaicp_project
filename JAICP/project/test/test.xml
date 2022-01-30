@@ -1,0 +1,252 @@
+<test>
+    <test-case id="random greet">
+        <random>0,1</random>
+        <q>/start</q>
+        <a>Здравствуйте! Я бот агентства недвижимости.</a>
+        <a state = "/Welcome"/>
+        <a state = "/Welcome"/>
+        
+        <q>/start</q>
+        <a>Добрый день! Я бот агентства недвижимости.</a>
+        <a>Я помогу вам найти новые объявления о продаже квартир с сайтов агрегаторов</a>
+        <a>Хотите начать новый поиск, зайти в избранное, или получить помощь по функционалу бота?</a>
+    </test-case>
+    
+    <test-case  id="search">
+        <q>/start</q>
+        <a state = "/Welcome"/>
+        <a state = "/Welcome"/>
+        <a state = "/Welcome"/>
+        <q>Поиск</q>
+        <a state = "/New_search"/>
+        <a state = "/New_search"/>
+        <a state = "/New_search"/>
+    </test-case>
+    
+    <test-case  id="query with 1 result">
+        <mockData>
+            <query method="get">
+                https://cianapi.herokuapp.com/query?metro=${metro}&amp;rooms=${rooms}&amp;pricelow=${pricelow}&amp;pricehigh=${pricehigh}
+            </query>
+            <parameters>
+                <metro>%D0%91%D0%B5%D0%BB%D0%BE%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B0%D1%8F</metro>
+                <rooms>2</rooms>
+                <pricelow>10000000</pricelow>
+                <pricehigh>25000000</pricehigh>
+            </parameters>
+            <response type="json" status="200">
+                [{"description": "Описание квартирыОписание квартиры"}]
+            </response>
+        </mockData>
+        <q>/start</q>
+        <a state = "/Welcome"/>
+        <a state = "/Welcome"/>
+        <a state = "/Welcome"/>
+        <q>Поиск</q>
+        <a state = "/New_search"/>
+        <a state = "/New_search"/>
+        <a state = "/New_search"/>
+        <q>двухкомнатная квартира на белорусской</q>
+        <a>Укажите первую границу ценового диапазона</a>
+        <q>10000000</q>
+        <a>Укажите вторую границу ценового диапазона</a>
+        <q>25000000</q>
+        <a>Запрос 2 комнатная квартира у метро Белорусская стоимостью от 10000000 до 25000000</a>
+        <a>По вашему запросу найдено 1 результатов</a>
+        <a>Текущее объявление 1 из 1</a>
+        <a>Описание квартирыОписание квартиры</a>
+    </test-case>
+    
+    <test-case id="query with 2 results and next">
+        <mockData>
+            <query method="get">
+                https://cianapi.herokuapp.com/query?metro=${metro}&amp;rooms=${rooms}&amp;pricelow=${pricelow}&amp;pricehigh=${pricehigh}
+            </query>
+            <parameters>
+                <metro>%D0%91%D0%B5%D0%BB%D0%BE%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B0%D1%8F</metro>
+                <rooms>2</rooms>
+                <pricelow>10000000</pricelow>
+                <pricehigh>25000000</pricehigh>
+            </parameters>
+            <response type="json" status="200">
+                [{"description": "Описание квартиры1"}, {"description": "Описание квартиры2"}]
+            </response>
+        </mockData>
+        <q>/start</q>
+        <a state = "/Welcome"/>
+        <a state = "/Welcome"/>
+        <a state = "/Welcome"/>
+        <q>Поиск</q>
+        <a state = "/New_search"/>
+        <a state = "/New_search"/>
+        <a state = "/New_search"/>
+        <q>двухкомнатная квартира на белорусской</q>
+        <a>Укажите первую границу ценового диапазона</a>
+        <q>10000000</q>
+        <a>Укажите вторую границу ценового диапазона</a>
+        <q>25000000</q>
+        <a>Запрос 2 комнатная квартира у метро Белорусская стоимостью от 10000000 до 25000000</a>
+        <a>По вашему запросу найдено 2 результатов</a>
+        <a>Текущее объявление 1 из 2</a>
+        <a>Описание квартиры1</a>
+        <q>Дальше</q>
+        <a>Текущее объявление 2 из 2</a>
+        <a>Описание квартиры2</a>
+    </test-case>
+    
+    <test-case id="add and delete from favorites">
+        <mockData>
+            <query method="get">
+                https://cianapi.herokuapp.com/query?metro=${metro}&amp;rooms=${rooms}&amp;pricelow=${pricelow}&amp;pricehigh=${pricehigh}
+            </query>
+            <parameters>
+                <metro>%D0%91%D0%B5%D0%BB%D0%BE%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B0%D1%8F</metro>
+                <rooms>2</rooms>
+                <pricelow>10000000</pricelow>
+                <pricehigh>25000000</pricehigh>
+            </parameters>
+            <response type="json" status="200">
+                [{"description": "Описание квартиры1"}, {"description": "Описание квартиры2"}]
+            </response>
+        </mockData>
+        <q>/start</q>
+        <a state = "/Welcome"/>
+        <a state = "/Welcome"/>
+        <a state = "/Welcome"/>
+        <q>Поиск</q>
+        <a state = "/New_search"/>
+        <a state = "/New_search"/>
+        <a state = "/New_search"/>
+        <q>двухкомнатная квартира на белорусской</q>
+        <a>Укажите первую границу ценового диапазона</a>
+        <q>10000000</q>
+        <a>Укажите вторую границу ценового диапазона</a>
+        <q>25000000</q>
+        <a>Запрос 2 комнатная квартира у метро Белорусская стоимостью от 10000000 до 25000000</a>
+        <a>По вашему запросу найдено 2 результатов</a>
+        <a>Текущее объявление 1 из 2</a>
+        <a>Описание квартиры1</a>
+        <q>Добавь</q>
+        <a>Запись добавлена в избранное!</a>
+        <q>удали</q>
+        <a>Запись удалена из избранного!</a>
+    </test-case>
+    
+    <test-case  id="add to favorites open and delete">
+        <mockData>
+            <query method="get">
+                https://cianapi.herokuapp.com/query?metro=${metro}&amp;rooms=${rooms}&amp;pricelow=${pricelow}&amp;pricehigh=${pricehigh}
+            </query>
+            <parameters>
+                <metro>%D0%91%D0%B5%D0%BB%D0%BE%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B0%D1%8F</metro>
+                <rooms>2</rooms>
+                <pricelow>10000000</pricelow>
+                <pricehigh>25000000</pricehigh>
+            </parameters>
+            <response type="json" status="200">
+                [{"description": "Описание квартиры1"}, {"description": "Описание квартиры2"}]
+            </response>
+        </mockData>
+        <q>/start</q>
+        <a state = "/Welcome"/>
+        <a state = "/Welcome"/>
+        <a state = "/Welcome"/>
+        <q>Поиск</q>
+        <a state = "/New_search"/>
+        <a state = "/New_search"/>
+        <a state = "/New_search"/>
+        <q>двухкомнатная квартира на белорусской</q>
+        <a>Укажите первую границу ценового диапазона</a>
+        <q>10000000</q>
+        <a>Укажите вторую границу ценового диапазона</a>
+        <q>25000000</q>
+        <a>Запрос 2 комнатная квартира у метро Белорусская стоимостью от 10000000 до 25000000</a>
+        <a>По вашему запросу найдено 2 результатов</a>
+        <a>Текущее объявление 1 из 2</a>
+        <a>Описание квартиры1</a>
+        <q>Добавь</q>
+        <a>Запись добавлена в избранное!</a>
+        <q>Избранное</q>
+        <a>Текущее объявление 1 из 1</a>
+        <a>Описание квартиры1</a>
+        <q>удали</q>
+        <a>Запись удалена из избранного!</a>
+        <a>Количество записей в избранном: 0</a>
+        <a state = "/New_search"/>
+        <a state = "/New_search"/>
+        <a state = "/New_search"/>
+    </test-case>
+    
+    <test-case  id="slot filling metro">
+        <mockData>
+            <query method="get">
+                https://cianapi.herokuapp.com/query?metro=${metro}&amp;rooms=${rooms}&amp;pricelow=${pricelow}&amp;pricehigh=${pricehigh}
+            </query>
+            <parameters>
+                <metro>%D0%91%D0%B5%D0%BB%D0%BE%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B0%D1%8F</metro>
+                <rooms>2</rooms>
+                <pricelow>10000000</pricelow>
+                <pricehigh>25000000</pricehigh>
+            </parameters>
+            <response type="json" status="200">
+                [{"description": "Описание квартиры1"}, {"description": "Описание квартиры2"}]
+            </response>
+        </mockData>
+        <q>/start</q>
+        <a state = "/Welcome"/>
+        <a state = "/Welcome"/>
+        <a state = "/Welcome"/>
+        <q>Поиск</q>
+        <a state = "/New_search"/>
+        <a state = "/New_search"/>
+        <a state = "/New_search"/>
+        <q>двухкомнатная кватрира от 10000000 до 25000000</q>
+        <a>Укажите станцию метро кольцевой ветки Москвы</a>
+        <q>Белорусская</q>
+        <a>Запрос 2 комнатная квартира у метро Белорусская стоимостью от 10000000 до 25000000</a>
+        <a>По вашему запросу найдено 2 результатов</a>
+        <a>Текущее объявление 1 из 2</a>
+        <a>Описание квартиры1</a>
+    </test-case>
+    
+    <test-case  id="entity params">
+        <mockData>
+            <query method="get">
+                https://cianapi.herokuapp.com/query?metro=${metro}&amp;rooms=${rooms}&amp;pricelow=${pricelow}&amp;pricehigh=${pricehigh}
+            </query>
+            <parameters>
+                <metro>%D0%91%D0%B5%D0%BB%D0%BE%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B0%D1%8F</metro>
+                <rooms>2</rooms>
+                <pricelow>10000000</pricelow>
+                <pricehigh>25000000</pricehigh>
+            </parameters>
+            <response type="json" status="200">
+                [{"description": "Описание квартиры", "address":"адрес", "info": {"Общая": "65 м²", "Жилая": null, "Кухня": "19 м²", "Этаж": "4 из 18"}}]
+            </response>
+        </mockData>
+        <q>/start</q>
+        <a state = "/Welcome"/>
+        <a state = "/Welcome"/>
+        <a state = "/Welcome"/>
+        <q>Поиск</q>
+        <a state = "/New_search"/>
+        <a state = "/New_search"/>
+        <a state = "/New_search"/>
+        <q>двухкомнатная квартира на белорусской</q>
+        <a>Укажите первую границу ценового диапазона</a>
+        <q>10000000</q>
+        <a>Укажите вторую границу ценового диапазона</a>
+        <q>25000000</q>
+        <a>Запрос 2 комнатная квартира у метро Белорусская стоимостью от 10000000 до 25000000</a>
+        <a>По вашему запросу найдено 1 результатов</a>
+        <a>Текущее объявление 1 из 1</a>
+        <a>Описание квартиры</a>
+        <q>адрес</q>
+        <a>адрес</a>
+        <q>площадь</q>
+        <a>Общая: 65 м²</a>
+        <a>Кухня: 19 м²</a>
+        <q>информация</q>
+        <a>Этаж: 4 из 18</a>
+    </test-case>
+</test>    
